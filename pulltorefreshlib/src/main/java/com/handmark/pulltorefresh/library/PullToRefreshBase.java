@@ -194,12 +194,6 @@ public abstract class PullToRefreshBase<T extends View> extends LinearLayout imp
 		return mState;
 	}
 
-	/**
-	 * @deprecated See {@link #isScrollingWhileRefreshingEnabled()}.
-	 */
-	public final boolean isDisableScrollingWhileRefreshing() {
-		return !isScrollingWhileRefreshingEnabled();
-	}
 
 	@Override
 	public final boolean isPullToRefreshEnabled() {
@@ -376,42 +370,12 @@ public abstract class PullToRefreshBase<T extends View> extends LinearLayout imp
 		mScrollingWhileRefreshingEnabled = allowScrollingWhileRefreshing;
 	}
 
-	/**
-	 * @deprecated See {@link #setScrollingWhileRefreshingEnabled(boolean)}
-	 */
-	public void setDisableScrollingWhileRefreshing(boolean disableScrollingWhileRefreshing) {
-		setScrollingWhileRefreshingEnabled(!disableScrollingWhileRefreshing);
-	}
 
 	@Override
 	public final void setFilterTouchEvents(boolean filterEvents) {
 		mFilterTouchEvents = filterEvents;
 	}
 
-	/**
-	 * @deprecated You should now call this method on the result of
-	 *             {@link #getLoadingLayoutProxy()}.
-	 */
-	public void setLastUpdatedLabel(CharSequence label) {
-		getLoadingLayoutProxy().setLastUpdatedLabel(label);
-	}
-
-	/**
-	 * @deprecated You should now call this method on the result of
-	 *             {@link #getLoadingLayoutProxy()}.
-	 */
-	public void setLoadingDrawable(Drawable drawable) {
-		getLoadingLayoutProxy().setLoadingDrawable(drawable);
-	}
-
-	/**
-	 * @deprecated You should now call this method on the result of
-	 *             {@link #getLoadingLayoutProxy(boolean, boolean)}.
-	 */
-	public void setLoadingDrawable(Drawable drawable, Mode mode) {
-		getLoadingLayoutProxy(mode.showHeaderLoadingLayout(), mode.showFooterLoadingLayout()).setLoadingDrawable(
-				drawable);
-	}
 
 	@Override
 	public void setLongClickable(boolean longClickable) {
@@ -445,30 +409,6 @@ public abstract class PullToRefreshBase<T extends View> extends LinearLayout imp
 		mOnRefreshListener = null;
 	}
 
-	/**
-	 * @deprecated You should now call this method on the result of
-	 *             {@link #getLoadingLayoutProxy()}.
-	 */
-	public void setPullLabel(CharSequence pullLabel) {
-		getLoadingLayoutProxy().setPullLabel(pullLabel);
-	}
-
-	/**
-	 * @deprecated You should now call this method on the result of
-	 *             {@link #getLoadingLayoutProxy(boolean, boolean)}.
-	 */
-	public void setPullLabel(CharSequence pullLabel, Mode mode) {
-		getLoadingLayoutProxy(mode.showHeaderLoadingLayout(), mode.showFooterLoadingLayout()).setPullLabel(pullLabel);
-	}
-
-	/**
-	 * @param enable Whether Pull-To-Refresh should be used
-	 * @deprecated This simple calls setMode with an appropriate mode based on
-	 *             the passed value.
-	 */
-	public final void setPullToRefreshEnabled(boolean enable) {
-		setMode(enable ? Mode.getDefault() : Mode.DISABLED);
-	}
 
 	@Override
 	public final void setPullToRefreshOverScrollEnabled(boolean enabled) {
@@ -487,39 +427,6 @@ public abstract class PullToRefreshBase<T extends View> extends LinearLayout imp
 		}
 	}
 
-	/**
-	 * @deprecated You should now call this method on the result of
-	 *             {@link #getLoadingLayoutProxy()}.
-	 */
-	public void setRefreshingLabel(CharSequence refreshingLabel) {
-		getLoadingLayoutProxy().setRefreshingLabel(refreshingLabel);
-	}
-
-	/**
-	 * @deprecated You should now call this method on the result of
-	 *             {@link #getLoadingLayoutProxy(boolean, boolean)}.
-	 */
-	public void setRefreshingLabel(CharSequence refreshingLabel, Mode mode) {
-		getLoadingLayoutProxy(mode.showHeaderLoadingLayout(), mode.showFooterLoadingLayout()).setRefreshingLabel(
-				refreshingLabel);
-	}
-
-	/**
-	 * @deprecated You should now call this method on the result of
-	 *             {@link #getLoadingLayoutProxy()}.
-	 */
-	public void setReleaseLabel(CharSequence releaseLabel) {
-		setReleaseLabel(releaseLabel, Mode.BOTH);
-	}
-
-	/**
-	 * @deprecated You should now call this method on the result of
-	 *             {@link #getLoadingLayoutProxy(boolean, boolean)}.
-	 */
-	public void setReleaseLabel(CharSequence releaseLabel, Mode mode) {
-		getLoadingLayoutProxy(mode.showHeaderLoadingLayout(), mode.showFooterLoadingLayout()).setReleaseLabel(
-				releaseLabel);
-	}
 
 	public void setScrollAnimationInterpolator(Interpolator interpolator) {
 		mScrollAnimationInterpolator = interpolator;
@@ -1365,15 +1272,6 @@ public abstract class PullToRefreshBase<T extends View> extends LinearLayout imp
 		 */
 		MANUAL_REFRESH_ONLY(0x4);
 
-		/**
-		 * @deprecated Use {@link #PULL_FROM_START} from now on.
-		 */
-		public static Mode PULL_DOWN_TO_REFRESH = Mode.PULL_FROM_START;
-
-		/**
-		 * @deprecated Use {@link #PULL_FROM_END} from now on.
-		 */
-		public static Mode PULL_UP_TO_REFRESH = Mode.PULL_FROM_END;
 
 		/**
 		 * Maps an int to a specific mode. This is needed when saving state, or
